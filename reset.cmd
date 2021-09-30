@@ -1,75 +1,174 @@
 @echo off
 
-REM ============================================================================
-:Admin_Check
+::------------------------------------------------------------------------------
+:: NEIS / K-Edufine ì„ ìœ„í•œ Internet Explorer ì¬ì„¤ì • ìŠ¤í¬ë¦½íŠ¸
+::       ì œì‘ : ì¸ì²œê´‘ì—­ì‹œêµìœ¡ì²­ 
+::------------------------------------------------------------------------------
+
+color 1f
+title Internet Explorer ì¬ì„¤ì • ìŠ¤í¬ë¦½íŠ¸
+
+::------------------------------------------------------------------------------
+:: ê´€ë¦¬ìê¶Œí•œ ì—¬ë¶€ í™•ì¸í•˜ê³  ê´€ë¦¬ìê¶Œí•œìœ¼ë¡œ ì¬ì‹¤í–‰
 cd /d "%~dp0" && ( if exist "%TEMP%\getadmin.vbs" del "%TEMP%\getadmin.vbs" ) && fsutil dirty query %systemdrive% 1>nul 2>nul || (cmd /u /c echo Set UAC = CreateObject^("Shell.Application"^) : UAC.ShellExecute "cmd.exe", "/k cd ""%~dp0"" && ""%~0"" %params%", "", "runas", 1 > "%TEMP%\getadmin.vbs" && "%TEMP%\getadmin.vbs" && exit /B )
-REM ============================================================================
+::------------------------------------------------------------------------------
+setlocal EnableExtensions EnableDelayedExpansion
 
-echo ===================================================================
-echo     NEIS / K-Edufine À» À§ÇÑ Internet Explorer Àç¼³Á¤ ½ºÅ©¸³Æ®     
-echo ===================================================================
+::------------------------------------------------------------------------------
+:: ì‹œë„êµìœ¡ì²­ ì„¤ì •
+echo.===============================================================================
+echo.################### NEIS / K-Edufine IE Reset Toolkit #########################
+echo.===============================================================================
+echo.
+echo.                               ì‹œë„êµìœ¡ì²­ ì„¤ì •
+echo.
+echo.
+echo.    [A] êµìœ¡ë¶€(ê²€ìˆ˜ì„œë²„)     [B] ì„œìš¸íŠ¹ë³„ì‹œêµìœ¡ì²­     [C] ë¶€ì‚°ê´‘ì—­ì‹œêµìœ¡ì²­
+echo.    [D] ëŒ€êµ¬ê´‘ì—­ì‹œêµìœ¡ì²­     [E] ì¸ì²œê´‘ì—­ì‹œêµìœ¡ì²­     [F] ê´‘ì£¼ê´‘ì—­ì‹œêµìœ¡ì²­
+echo.    [G] ëŒ€ì „ê´‘ì—­ì‹œêµìœ¡ì²­     [H] ìš¸ì‚°ê´‘ì—­ì‹œêµìœ¡ì²­     [I] ì„¸ì¢…íŠ¹ë³„ìì¹˜ì‹œêµìœ¡ì²­
+echo.    [J] ê²½ê¸°ë„êµìœ¡ì²­         [K] ê°•ì›ë„êµìœ¡ì²­         [M] ì¶©ì²­ë¶ë„êµìœ¡ì²­
+echo.    [N] ì¶©ì²­ë‚¨ë„êµìœ¡ì²­       [P] ì „ë¼ë¶ë„êµìœ¡ì²­       [Q] ì „ë¼ë‚¨ë„êµìœ¡ì²­
+echo.    [R] ê²½ìƒë¶ë„êµìœ¡ì²­       [S] ê²½ìƒë‚¨ë„êµìœ¡ì²­       [T] ì œì£¼íŠ¹ë³„ìì¹˜ë„êµìœ¡ì²­
+echo.
+echo.
+echo.===============================================================================
+choice /c:ABCDEFGHIJKMNPQRST /N /M "ì‹œë„êµìœ¡ì²­ì„ ì„¤ì •í•´ì£¼ì„¸ìš” : "
 
-REM ============================================================================
-REM ½Ãµµ ±âº» ¼³Á¤ : ½Ãµµ¸í°ú ±âº» µµ¸ŞÀÎÀ» ¼öÁ¤ÇØ¾ß ÇÕ´Ï´Ù.
-set SIDO=Å×½ºÆ®±³À°Ã»
-set SIDO_URL=test.go.kr
-REM ============================================================================
 
-REM ==== ºê¶ó¿ìÀú Á¾·á =============================================================
-echo ¿øÈ°ÇÑ ¼³Á¤À» À§ÇØ ºê¶ó¿ìÀú¸¦ Á¾·áÇÕ´Ï´Ù.
-echo .
+if errorlevel 18 (
+	set SIDO=ì œì£¼íŠ¹ë³„ìì¹˜ë„êµìœ¡ì²­
+	set SIDO_URL=jje.go.kr
+)
+if errorlevel 17 (
+	set SIDO=ê²½ìƒë‚¨ë„êµìœ¡ì²­
+	set SIDO_URL=gne.go.kr
+)
+if errorlevel 16 (
+	set SIDO=ê²½ìƒë¶ë„êµìœ¡ì²­
+	set SIDO_URL=gbe.kr
+)
+if errorlevel 15 (
+	set SIDO=ì „ë¼ë‚¨ë„êµìœ¡ì²­
+	set SIDO_URL=jne.go.kr
+)
+if errorlevel 14 (
+	set SIDO=ì „ë¼ë¶ë„êµìœ¡ì²­
+	set SIDO_URL=jbe.go.kr
+)
+if errorlevel 13 (
+	set SIDO=ì¶©ì²­ë‚¨ë„êµìœ¡ì²­
+	set SIDO_URL=cne.go.kr
+)
+if errorlevel 12 (
+	set SIDO=ì¶©ì²­ë¶ë„êµìœ¡ì²­
+	set SIDO_URL=cbe.go.kr
+)
+if errorlevel 11 (
+	set SIDO=ê°•ì›ë„êµìœ¡ì²­
+	set SIDO_URL=gwe.go.kr
+)
+if errorlevel 10 (
+	set SIDO=ê²½ê¸°ë„êµìœ¡ì²­
+	set SIDO_URL=goe.go.kr
+)
+if errorlevel 9 (
+	set SIDO=ì„¸ì¢…íŠ¹ë³„ìì¹˜ì‹œêµìœ¡ì²­
+	set SIDO_URL=sje.go.kr
+)
+if errorlevel 8 (
+	set SIDO=ìš¸ì‚°ê´‘ì—­ì‹œêµìœ¡ì²­
+	set SIDO_URL=use.go.kr
+)
+if errorlevel 7 (
+	set SIDO=ëŒ€ì „ê´‘ì—­ì‹œêµìœ¡ì²­
+	set SIDO_URL=dje.go.kr
+)
+if errorlevel 6 (
+	set SIDO=ê´‘ì£¼ê´‘ì—­ì‹œêµìœ¡ì²­
+	set SIDO_URL=gen.go.kr
+)
+if errorlevel 5 (
+	set SIDO=ì¸ì²œê´‘ì—­ì‹œêµìœ¡ì²­
+	set SIDO_URL=ice.go.kr
+)
+if errorlevel 4 (
+	set SIDO=ëŒ€êµ¬ê´‘ì—­ì‹œêµìœ¡ì²­
+	set SIDO_URL=dge.go.kr
+)
+if errorlevel 3 (
+	set SIDO=ë¶€ì‚°ê´‘ì—­ì‹œêµìœ¡ì²­
+	set SIDO_URL=pen.go.kr
+)
+if errorlevel 2 (
+	set SIDO=ì„œìš¸íŠ¹ë³„ì‹œêµìœ¡ì²­
+	set SIDO_URL=sen.go.kr
+)
+if errorlevel 1 (
+	set SIDO=ê²€ìˆ˜ì„œë²„
+	set SIDO_URL=dev.klef.go.kr
+)
 
-echo TaskKill /f /im iexplorer.exe
-echo TaskKill /f /im msedge.exe
-echo TaskKill /f /im microsoftEdge.exe
-echo TaskKill /f /im chrome.exe
-REM ============================================================================
+cls 
+title Internet Explorer ì¬ì„¤ì • ìŠ¤í¬ë¦½íŠ¸
 
-REM ==== MS Edge ÀÚµ¿ ÀüÈ¯ ±â´É Â÷´Ü ================================================
-echo Internet Explorer ½ÇÇà½Ã MS Edge·Î ÀÚµ¿ ÀüÈ¯µÇ´Â ±â´ÉÀ» Â÷´ÜÇÕ´Ï´Ù.
-echo .
+echo %SIDO%(%SIDO_URL%) í™˜ê²½ìœ¼ë¡œ Internet Explorerë¥¼ ìë™ ì„¤ì •í•©ë‹ˆë‹¤.
 
-REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Ext\CLSID" /v "{1FD49718-1D00-4B19-AF5F-070AF6D5D54C}" /t REG_SZ /d 0 /f
-REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Browser Helper Objects\{1FD49718-1D00-4B19-AF5F-070AF6D5D54C}" /v "NoInternetExplorer" /t REG_SZ /d 1 /f
-REM ============================================================================
 
-REM ==== ½Å·ÚÇÒ ¼ö ÀÖ´Â »çÀÌÆ® µî·Ï ===================================================
-echo   %SIDO% µµ¸ŞÀÎ(*.%SIDO_URL%)À» ½Å·ÚÇÒ ¼ö ÀÖ´Â »çÀÌÆ®·Î µî·ÏÇÕ´Ï´Ù.
-echo .
+::------------------------------------------------------------------------------
+:: ë¸Œë¼ìš°ì € ì¢…ë£Œ
+::------------------------------------------------------------------------------
+echo ì›í™œí•œ ì„¤ì •ì„ ìœ„í•´ ë¸Œë¼ìš°ì €ë¥¼ ì¢…ë£Œí•©ë‹ˆë‹¤.
+TaskKill /f /im iexplore.exe
+TaskKill /f /im msedge.exe
+TaskKill /f /im microsoftEdge.exe
+TaskKill /f /im chrome.exe
 
-REG ADD "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\Domains\%SIDO_URL%" /v "*" /t REG_DWORD /d 00000002 /f
-echo   NEIS / K-¿¡µàÆÄÀÎ Áö¿ø¼­ºñ½º »çÀÌÆ®¸¦ ½Å·ÚÇÒ ¼ö ÀÖ´Â »çÀÌÆ®·Î µî·ÏÇÕ´Ï´Ù.
-echo .
+::------------------------------------------------------------------------------
+:: IE ì‹¤í–‰ì‹œ MS Edgeë¡œ ì „í™˜í•˜ëŠ” ê¸°ëŠ¥ ì°¨ë‹¨
+::------------------------------------------------------------------------------
+echo Internet Explorer ì‹¤í–‰ì‹œ MS Edgeë¡œ ìë™ ì „í™˜ë˜ëŠ” ê¸°ëŠ¥ì„ ì°¨ë‹¨í•©ë‹ˆë‹¤.
 
-REG ADD "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\Domains\klef.go.kr\help" /v "*" /t REG_DWORD /d 00000002 /f
-REG ADD "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\Domains\neis.go.kr\help" /v "*" /t REG_DWORD /d 00000002 /f
-REM ============================================================================
+REG ADD "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Ext\CLSID" /v "{1FD49718-1D00-4B19-AF5F-070AF6D5D54C}" /t REG_SZ /d 0 /f
+REG ADD "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Browser Helper Objects\{1FD49718-1D00-4B19-AF5F-070AF6D5D54C}" /v "NoInternetExplorer" /t REG_SZ /d 1 /f
 
-REM ==== IE ±âº»¼³Á¤ µî·Ï ==========================================================
-echo   Internet Explore ±âº» ¼³Á¤À» µî·ÏÇÕ´Ï´Ù.(ÆË¾÷Â÷´ÜÇØÁ¦, È£È¯¼ºº¸±â ¼³Á¤ Á¦°Å)
-echo .
-REG ADD "HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Internet Explorer\Restrictions" /v NoHelpItemSendFeedback /t REG_DWORD /d 00000001 /f
-REM ActiveXÇÊÅÍ¸µ ÇØÁ¦
+::------------------------------------------------------------------------------
+:: ì‹œë„ ë„ë©”ì¸ê³¼ ì§€ì›ì„œë¹„ìŠ¤ ë„ë©”ì¸ì„ ì‹ ë¢°í•  ìˆ˜ ìˆëŠ” ì‚¬ì´íŠ¸ë¡œ ë“±ë¡
+::------------------------------------------------------------------------------
+echo   %SIDO% ë„ë©”ì¸(*.%SIDO_URL%)ì„ ì‹ ë¢°í•  ìˆ˜ ìˆëŠ” ì‚¬ì´íŠ¸ë¡œ ë“±ë¡í•©ë‹ˆë‹¤.
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\Domains\%SIDO_URL%" /v "*" /t REG_DWORD /d 00000002 /f
+
+echo   NEIS / K-ì—ë“€íŒŒì¸ ì§€ì›ì„œë¹„ìŠ¤ ì‚¬ì´íŠ¸ë¥¼ ì‹ ë¢°í•  ìˆ˜ ìˆëŠ” ì‚¬ì´íŠ¸ë¡œ ë“±ë¡í•©ë‹ˆë‹¤.
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\Domains\klef.go.kr\help" /v "*" /t REG_DWORD /d 00000002 /f
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\Domains\neis.go.kr\help" /v "*" /t REG_DWORD /d 00000002 /f
+
+::------------------------------------------------------------------------------
+:: IE ê¸°ë³¸ì„¤ì • ë“±ë¡
+::------------------------------------------------------------------------------
+echo Internet Explore ê¸°ë³¸ ì„¤ì •ì„ ë“±ë¡í•©ë‹ˆë‹¤.(íŒì—…ì°¨ë‹¨í•´ì œ, í˜¸í™˜ì„±ë³´ê¸° ì„¤ì • ì œê±°)
+
+REG ADD "HKEY_CURRENT_USER\Software\Policies\Microsoft\Internet Explorer\Restrictions" /v NoHelpItemSendFeedback /t REG_DWORD /d 00000001 /f
+REM ActiveXí•„í„°ë§ í•´ì œ
 REG DELETE "HKEY_CURRENT_USER\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_RESTRICT_ACTIVEXINSTALL" /f
 REG DELETE "HKEY_CURRENT_USER\Software\Policies\Microsoft\Internet Explorer\Safety\ActiveXFiltering" /f
-REM ÆË¾÷Â÷´Ü ÇØÁ¦
+REM íŒì—…ì°¨ë‹¨ í•´ì œ
 REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\New Windows" /v PopupMgr /t REG_DWORD /d "0" /f
-REM Windows Defender SmartScreen ÇÊÅÍ ÇØÁ¦
+REM Windows Defender SmartScreen í•„í„° í•´ì œ
 REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\PhishingFilter" /v EnabledV9 /t REG_DWORD /d "0" /f
-REM È£È¯¼º º¸±â ¼³Á¤ ÃÊ±âÈ­
+REM í˜¸í™˜ì„± ë³´ê¸° ì„¤ì • ì´ˆê¸°í™”
 REG DELETE "HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\BrowserEmulation\ClearableListData" /v "UserFilter" /f
-REM TLS ¸ğµÎ »ç¿ë
-REG ADD "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" /v "SecureProtocols" /t REG_DWORD /d 2688 /f
-REM Á¾·áÇÒ¶§ °Ë»ö±â·Ï»èÁ¦ Ã¼Å© ÇØÁ¦
-REM REG ADD "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Internet Explorer\Privacy" /v "ClearBrowsingHistoryOnExit" /t REG_DWORD /d 00000000 /f
-REM ÀúÀåµÈ ÆäÀÌÁöÀÇ »õ¹öÀüÈ®ÀÎ -> À¥ÆäÀÌÁö¸¦ ¿­¶§¸¶´Ù
-REM REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v "SyncMode5" /t REG_DWORD /d 00000003 /f
-REM »ç¿ëÇÒ µğ½ºÅ© °ø°£ 330MB·Î ¼³Á¤
+REM TLS ëª¨ë‘ ì‚¬ìš©
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v "SecureProtocols" /t REG_DWORD /d 2688 /f
+REM ì¢…ë£Œí• ë•Œ ê²€ìƒ‰ê¸°ë¡ì‚­ì œ ì²´í¬ í•´ì œ
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Privacy" /v "ClearBrowsingHistoryOnExit" /t REG_DWORD /d 00000000 /f
+REM ì €ì¥ëœ í˜ì´ì§€ì˜ ìƒˆë²„ì „í™•ì¸ -> ì›¹í˜ì´ì§€ë¥¼ ì—´ë•Œë§ˆë‹¤
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v "SyncMode5" /t REG_DWORD /d 00000003 /f
+REM ì‚¬ìš©í•  ë””ìŠ¤í¬ ê³µê°„ 330MBë¡œ ì„¤ì •
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache" /v "ContentLimit" /t REG_DWORD /d 00019000 /f
 
-REM ============================================================================
-
-REM ==== IE º¸¾È ¼³Á¤ ÃÊ±âÈ­ =======================================================
-echo   Internet Explorer º¸¾È ¼³Á¤ Á¤º¸¸¦ ÃÊ±âÈ­ÇÕ´Ï´Ù.
+::------------------------------------------------------------------------------
+:: IE ë³´ì•ˆ ì„¤ì • ì´ˆê¸°í™”
+::------------------------------------------------------------------------------
+echo   Internet Explorer ë³´ì•ˆ ì„¤ì • ì •ë³´ë¥¼ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
 
 if exist "%TEMP%\IE.vbs" del "%TEMP%\IE.vbs"
 
@@ -90,55 +189,59 @@ ECHO WshShell.SendKeys "{ENTER}"  >> %TEMP%\IE.vbs
 
 CScript //nologo %TEMP%\IE.vbs
 
-if exist "%TEMP%\IE.vbs" del "%TEMP%\IE.vbs"
-REM ============================================================================
+:: if exist "%TEMP%\IE.vbs" del "%TEMP%\IE.vbs"
 
-REM ==== ÀÎÅÍ³İ¿É¼Ç º¸¾ÈÅÇ ¼³Á¤ ======================================================
-echo ÀÎÅÍ³İ¿É¼Ç Áß º¸¾ÈÅÇ ¼³Á¤À» º¯°æÇÕ´Ï´Ù.
-REM »ç¿ëÀÚ ÁöÁ¤ ¼öÁØ ¼³Á¤ µî·Ï
-REG ADD "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "CurrentLevel" /t REG_DWORD /d 00000000 /f
-REM Windows Defender SmartScreen »ç¿ë
-REG ADD "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2301" /t REG_DWORD /d 00000003 /f
-REM À¥»çÀÌÆ®¿¡¼­ ÁÖ¼Ò ¶Ç´Â »óÅÂÇ¥½ÃÁÙ ¾øÀÌ Ã¢À» ¿­µµ·Ï Çã¿ë
-REG ADD "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2104" /t REG_DWORD /d 00000000 /f
-REM Å©±â ¹× À§Ä¡ Á¦ÇÑ ¾øÀÌ ½ºÅ©¸³Æ® ½ÇÇà Ã¢À» ¿­ ¼ö ÀÖ½À´Ï´Ù.
-REG ADD "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2102" /t REG_DWORD /d 00000000 /f
-REM ÆË¾÷ Â÷´Ü »ç¿ë
-REG ADD "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1609" /t REG_DWORD /d 00000000 /f
-REM È¥ÇÕµÈ ÄÜÅÙÃ÷ Ç¥½Ã
-REG ADD "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1809" /t REG_DWORD /d 00000003 /f
-REM XSS ÇÊÅÍ »ç¿ë
-REG ADD "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1409" /t REG_DWORD /d 00000003 /f
-REM À¥ »çÀÌÆ®¿¡¼­ ½ºÅ©¸³ÆÃµÈ Ã¢À» »ç¿ëÇÏ¿© Á¤º¸¸¦ ¿äÃ»ÇÏµµ·Ï Çã¿ë
-REG ADD "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2105" /t REG_DWORD /d 00000000 /f
-REM ÇÁ·Î±×·¥ Å¬¸³º¸µå ¾×¼¼½º Çã¿ë
-REG ADD "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1407" /t REG_DWORD /d 00000000 /f
-REM º¸È£¸ğµå »ç¿ë ¾ÈÇÔ
-REG ADD "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2500" /t REG_DWORD /d 00000003 /f
-REM ============================================================================
+::------------------------------------------------------------------------------
+:: ì¸í„°ë„·ì˜µì…˜ ë³´ì•ˆíƒ­ ì„¤ì •
+::------------------------------------------------------------------------------
+echo ì¸í„°ë„·ì˜µì…˜ ì¤‘ ë³´ì•ˆíƒ­ ì„¤ì •ì„ ë³€ê²½í•©ë‹ˆë‹¤.
+
+REM ì‚¬ìš©ì ì§€ì • ìˆ˜ì¤€ ì„¤ì • ë“±ë¡
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "CurrentLevel" /t REG_DWORD /d 00000000 /f
+REM Windows Defender SmartScreen ì‚¬ìš©
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2301" /t REG_DWORD /d 00000003 /f
+REM ì›¹ì‚¬ì´íŠ¸ì—ì„œ ì£¼ì†Œ ë˜ëŠ” ìƒíƒœí‘œì‹œì¤„ ì—†ì´ ì°½ì„ ì—´ë„ë¡ í—ˆìš©
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2104" /t REG_DWORD /d 00000000 /f
+REM í¬ê¸° ë° ìœ„ì¹˜ ì œí•œ ì—†ì´ ìŠ¤í¬ë¦½íŠ¸ ì‹¤í–‰ ì°½ì„ ì—´ ìˆ˜ ìˆìŠµë‹ˆë‹¤.
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2102" /t REG_DWORD /d 00000000 /f
+REM íŒì—… ì°¨ë‹¨ ì‚¬ìš©
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1609" /t REG_DWORD /d 00000000 /f
+REM í˜¼í•©ëœ ì½˜í…ì¸  í‘œì‹œ
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1809" /t REG_DWORD /d 00000003 /f
+REM XSS í•„í„° ì‚¬ìš©
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1409" /t REG_DWORD /d 00000003 /f
+REM ì›¹ ì‚¬ì´íŠ¸ì—ì„œ ìŠ¤í¬ë¦½íŒ…ëœ ì°½ì„ ì‚¬ìš©í•˜ì—¬ ì •ë³´ë¥¼ ìš”ì²­í•˜ë„ë¡ í—ˆìš©
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2105" /t REG_DWORD /d 00000000 /f
+REM í”„ë¡œê·¸ë¨ í´ë¦½ë³´ë“œ ì•¡ì„¸ìŠ¤ í—ˆìš©
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "1407" /t REG_DWORD /d 00000000 /f
+REM ë³´í˜¸ëª¨ë“œ ì‚¬ìš© ì•ˆí•¨
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v "2500" /t REG_DWORD /d 00000003 /f
 
 
 
-REM ==== K-¿¡µàÆÄÀÎ ±â¾È±â °ü·Ã ActiveX °­Á¦¼³Á¤ =======================================
-echo ±â¾È±â °ü·Ã ActiveX¸¦ Àçµî·ÏÇÕ´Ï´Ù.
+::------------------------------------------------------------------------------
+:: K-ì—ë“€íŒŒì¸ ê¸°ì•ˆê¸° ê´€ë ¨ ActiveX ê°•ì œì„¤ì •
+::------------------------------------------------------------------------------
+echo ê¸°ì•ˆê¸° ê´€ë ¨ ActiveXë¥¼ ì¬ë“±ë¡í•©ë‹ˆë‹¤.
+
 REM HSAttach Class
-REG ADD "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Ext\Stats\{205D1F4F-DB85-4393-AC6D-D3FF2434E37E}\iexplore" /v "Count" /t REG_DWORD /d 0 /f
-REG ADD "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Ext\Stats\{205D1F4F-DB85-4393-AC6D-D3FF2434E37E}\iexplore\AllowedDomains\*" /f
-REG DELETE "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Ext\Settings\{205D1F4F-DB85-4393-AC6D-D3FF2434E37E}" /f
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Ext\Stats\{205D1F4F-DB85-4393-AC6D-D3FF2434E37E}\iexplore" /v "Count" /t REG_DWORD /d 0 /f
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Ext\Stats\{205D1F4F-DB85-4393-AC6D-D3FF2434E37E}\iexplore\AllowedDomains\%SIDO_URL%" /f
+REG DELETE "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Ext\Settings\{205D1F4F-DB85-4393-AC6D-D3FF2434E37E}" /f
 
 REM HShell WShell Class
-REG ADD "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Ext\Stats\{AA4372DE-FBA7-4DF1-B213-A3E17859B6E7}\iexplore" /v "Count" /t REG_DWORD /d 0 /f
-REG ADD "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Ext\Stats\{AA4372DE-FBA7-4DF1-B213-A3E17859B6E7}\iexplore\AllowedDomains\*" /f
-REG DELETE "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Ext\Settings\{AA4372DE-FBA7-4DF1-B213-A3E17859B6E7}" /f
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Ext\Stats\{AA4372DE-FBA7-4DF1-B213-A3E17859B6E7}\iexplore" /v "Count" /t REG_DWORD /d 0 /f
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Ext\Stats\{AA4372DE-FBA7-4DF1-B213-A3E17859B6E7}\iexplore\AllowedDomains\%SIDO_URL%" /f
+REG DELETE "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Ext\Settings\{AA4372DE-FBA7-4DF1-B213-A3E17859B6E7}" /f
 
 REM HwpODTCtrl Control
-REG ADD "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Ext\Stats\{BD9C32E4-3155-4691-8972-097D53B10052}\iexplore" /v "Count" /t REG_DWORD /d 0 /f
-REG ADD "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Ext\Stats\{BD9C32E4-3155-4691-8972-097D53B10052}\iexplore\AllowedDomains\*" /f
-REG DELETE "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Ext\Settings\{BD9C32E4-3155-4691-8972-097D53B10052}" /f
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Ext\Stats\{BD9C32E4-3155-4691-8972-097D53B10052}\iexplore" /v "Count" /t REG_DWORD /d 0 /f
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Ext\Stats\{BD9C32E4-3155-4691-8972-097D53B10052}\iexplore\AllowedDomains\%SIDO_URL%" /f
+REG DELETE "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Ext\Settings\{BD9C32E4-3155-4691-8972-097D53B10052}" /f
 
 REM HwpCtrl Control
-REG ADD "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Ext\Stats\{BD9C32DE-3155-4691-8972-097D53B10052}\iexplore" /v "Count" /t REG_DWORD /d 0 /f
-REG ADD "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Ext\Stats\{BD9C32DE-3155-4691-8972-097D53B10052}\iexplore\AllowedDomains\*" /f
-REG DELETE "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Ext\Settings\{BD9C32DE-3155-4691-8972-097D53B10052}" /f
-REM ============================================================================
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Ext\Stats\{BD9C32DE-3155-4691-8972-097D53B10052}\iexplore" /v "Count" /t REG_DWORD /d 0 /f
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Ext\Stats\{BD9C32DE-3155-4691-8972-097D53B10052}\iexplore\AllowedDomains\%SIDO_URL%" /f
+REG DELETE "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Ext\Settings\{BD9C32DE-3155-4691-8972-097D53B10052}" /f
+::------------------------------------------------------------------------------
 
